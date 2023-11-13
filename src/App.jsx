@@ -12,7 +12,7 @@ function App() {
     setText("");
   }
   return (
-    <div className="App container px-12">
+    <div className="App container px-12 mx-auto">
       <div className="bg-gray-200 px-5 py-5">
         <div className="flex justify-between">
           <span className="text-2xl ">Todo list</span>
