@@ -1,5 +1,5 @@
 import React from "react";
-import { removeTodoById } from "../states/todos";
+import TodoItem from "./TodoItem";
 
 export function TodoList({ todos }) {
   return (
@@ -9,38 +9,7 @@ export function TodoList({ todos }) {
       ) : (
         <ul className="list-none">
           {todos.value.map((it, idx) => {
-            return (
-              <li
-                key={it.id}
-                className="flex w-full justify-between border border-b-black py-1"
-              >
-                <div className="flex gap-2">
-                  <input
-                    type="checkbox"
-                    checked={it.complete}
-                    onChange={() => {
-                      it.complete = !it.complete;
-                      todos.value = [...todos.value];
-                    }}
-                  />
-                  <span
-                    className={`font-bold ${
-                      it.complete ? "line-through text-gray-500" : ""
-                    }`}
-                  >
-                    {it.body}
-                  </span>
-                </div>
-                <span
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    removeTodoById(it.id);
-                  }}
-                >
-                  ❌
-                </span>
-              </li>
-            );
+            return <TodoItem key={it.id} todo={it} todos={todos} />;
           })}
         </ul>
       )}

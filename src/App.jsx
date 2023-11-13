@@ -1,7 +1,7 @@
-import "./App.css";
-import { addTodo, todos } from "./states/todos";
-import TodoList from "./components/TodoList";
 import { useState } from "react";
+import "./App.css";
+import { addTodo, clearTodos, todos, todosComplete } from "./states/todos";
+import TodoList from "./components/TodoList";
 
 function App() {
   const [text, setText] = useState("");
@@ -14,10 +14,13 @@ function App() {
   return (
     <div className="App container px-12">
       <div className="bg-gray-200 px-5 py-5">
-        <h1 className="text-3xl flex justify-between">
-          <span>Todo list</span>
-          <span className="text-1xl">Total: {todos.value.length}</span>
-        </h1>
+        <div className="flex justify-between">
+          <span className="text-2xl ">Todo list</span>
+          <span className="">
+            <div>Total: {todos.value.length}</div>
+            <div>Total Complete: {todosComplete.value.length}</div>
+          </span>
+        </div>
         <div className="pt-10">
           <form onSubmit={handleSubmit}>
             <input
@@ -31,6 +34,16 @@ function App() {
             />
           </form>
         </div>
+        {todos.value.length > 0 ? (
+          <div className="flex justify-end py-2">
+            <button
+              class="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded transi duration-200 ease-in-out"
+              onClick={clearTodos}
+            >
+              Clear
+            </button>
+          </div>
+        ) : null}
         <div className="mt-4">
           <TodoList todos={todos} />
         </div>

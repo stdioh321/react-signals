@@ -1,9 +1,14 @@
 import {
   effect,
   signal,
+  computed
 } from "@preact/signals-react";
 
 export const todos = signal([])
+
+export const todosComplete = computed(() => {
+  return todos.value.filter(t => t.complete)
+})
 
 effect(() => {
   console.log({
@@ -32,4 +37,8 @@ export function removeTodoById(id) {
     newTodos
   });
   todos.value = newTodos;
+}
+
+export function clearTodos() {
+  todos.value = [];
 }
