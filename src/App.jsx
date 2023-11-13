@@ -12,21 +12,28 @@ function App() {
     setText("");
   }
   return (
-    <div className="App container px-32">
-      <h1>Todo list: {todos.value.length}</h1>
-      <div>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={text}
-            onInput={(e) => {
-              setText(e.target.value);
-            }}
-          />
-        </form>
-      </div>
-      <div>
-        <TodoList todos={todos} />
+    <div className="App container px-12">
+      <div className="bg-gray-200 px-5 py-5">
+        <h1 className="text-3xl flex justify-between">
+          <span>Todo list</span>
+          <span className="text-1xl">Total: {todos.value.length}</span>
+        </h1>
+        <div className="pt-10">
+          <form onSubmit={handleSubmit}>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              placeholder="Todo here...."
+              type="text"
+              value={text}
+              onInput={(e) => {
+                setText(e.target.value);
+              }}
+            />
+          </form>
+        </div>
+        <div className="mt-4">
+          <TodoList todos={todos} />
+        </div>
       </div>
     </div>
   );
